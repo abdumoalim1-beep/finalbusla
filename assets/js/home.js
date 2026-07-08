@@ -110,7 +110,7 @@
         </div>
         <div style="flex:1;display:flex;flex-direction:column;padding:20px 20px 18px;background:var(--surface);">
           <h3 style="margin:0 0 8px;font-size:18px;font-weight:600;">${p.title[lang]}</h3>
-          <p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--text-dim);flex:1;">${p.short[lang]}</p>
+          <p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--text-dim);flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.short[lang]}</p>
           <div style="margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);text-align:end;">${String(i+1).padStart(2,'0')} / ${String(n).padStart(2,'0')}</div>
         </div>`;
       card.addEventListener('click', () => {
