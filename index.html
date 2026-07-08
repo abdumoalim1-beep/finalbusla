@@ -375,7 +375,11 @@
           </div>
           <div id="calWeekdays" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px;"></div>
           <div id="calDays" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;"></div>
-          <div data-en="Click any available day to book your slot instantly" style="text-align:center;font-size:13px;color:var(--text-faint);margin-top:22px;">اضغط على أي يوم متاح لحجز موعدك مباشرة</div>
+          <div id="calSlotsWrap" style="display:none;margin-top:22px;padding-top:22px;border-top:1px solid var(--glass-border);">
+            <div id="calSlotsLabel" style="font-size:13.5px;color:var(--text-dim);margin-bottom:14px;"></div>
+            <div id="calSlots" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;"></div>
+          </div>
+          <div id="calHint" data-en="Click any available day to book your slot instantly" style="text-align:center;font-size:13px;color:var(--text-faint);margin-top:22px;">اضغط على أي يوم متاح لحجز موعدك مباشرة</div>
         </div>
 
         <div style="display:flex;flex-direction:column;gap:14px;">
@@ -411,6 +415,43 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ BOOKING EMAIL MODAL ============ -->
+  <div id="bookingModal" onclick="if(event.target===this) window.Booking.close()" style="display:none;position:fixed;inset:0;z-index:250;background:rgba(5,5,5,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;">
+    <div onclick="event.stopPropagation()" style="width:min(420px,100%);background:var(--surface);border:1px solid var(--line-strong);border-radius:22px;padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;">
+      <button onclick="window.Booking.close()" style="position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--glass-border);background:var(--glass-card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div id="bookingModalSummary" style="font-size:13.5px;color:var(--accent);font-family:'IBM Plex Mono',monospace;margin-bottom:10px;"></div>
+      <h3 data-en="Confirm your booking" style="margin:0 0 20px;font-size:20px;font-weight:600;">أكّد حجزك</h3>
+
+      <form id="bookingForm">
+        <label data-en="Your name" style="display:block;font-size:13px;color:var(--text-faint);margin-bottom:6px;">الاسم</label>
+        <input id="bookingName" type="text" required style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid var(--glass-border);background:var(--glass-card);color:var(--text);font-size:14.5px;margin-bottom:16px;font-family:inherit;">
+
+        <label data-en="Email address" style="display:block;font-size:13px;color:var(--text-faint);margin-bottom:6px;">البريد الإلكتروني</label>
+        <input id="bookingEmail" type="email" required dir="ltr" style="width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid var(--glass-border);background:var(--glass-card);color:var(--text);font-size:14.5px;margin-bottom:8px;font-family:inherit;">
+        <div data-en="You'll receive a Google Meet invite at this address." style="font-size:12px;color:var(--text-faint);margin-bottom:20px;">راح توصلك دعوة Google Meet على هذا البريد.</div>
+
+        <div id="bookingError" style="display:none;color:#ff6a6a;font-size:13px;margin-bottom:14px;"></div>
+
+        <button id="bookingSubmit" type="submit" style="width:100%;padding:14px;border:none;border-radius:999px;background:linear-gradient(135deg, var(--accent), var(--accent-2));color:#fff;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;">
+          <span data-en="Confirm booking">تأكيد الحجز</span>
+        </button>
+      </form>
+
+      <div id="bookingSuccess" style="display:none;text-align:center;">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+        </div>
+        <h3 data-en="Booked!" style="margin:0 0 10px;font-size:20px;font-weight:600;">تم الحجز!</h3>
+        <p data-en="Check your email for the Google Meet invite." style="margin:0 0 20px;color:var(--text-dim);font-size:14.5px;line-height:1.7;">راح توصلك دعوة Google Meet على بريدك الإلكتروني.</p>
+        <a id="bookingMeetLink" href="#" target="_blank" rel="noopener" style="display:none;text-decoration:none;color:#fff;background:linear-gradient(135deg, var(--accent), var(--accent-2));padding:12px 24px;border-radius:999px;font-weight:600;font-size:14px;">
+          <span data-en="Open Google Meet">افتح Google Meet</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
