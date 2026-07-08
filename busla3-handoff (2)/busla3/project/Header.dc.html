@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<header dir="rtl" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px clamp(16px,4vw,48px);background:{{ headerBg }};-webkit-backdrop-filter:{{ headerBlur }};backdrop-filter:{{ headerBlur }};border-bottom:1px solid {{ headerBorder }};">
+  <a href="{{ logoHref }}" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text,#fff);">
+    <img src="assets/busla-wordmark.png" style="flex:none;height:10px;width:auto;" alt="BUSLA">
+    <img src="assets/busla-icon.png" style="flex:none;height:21px;width:auto;" alt="">
+  </a>
+  <nav class="dt-nav" style="align-items:center;gap:30px;font-size:14px;font-weight:400;">
+    <a href="Services.dc.html" data-en="Services" style="text-decoration:none;color:{{ servicesColor }};transition:color .25s;position:relative;padding-bottom:4px;border-bottom:2px solid {{ servicesLine }};" style-hover="color:#fff;">خدماتنا</a>
+    <a href="Work.dc.html" data-en="Work" style="text-decoration:none;color:{{ workColor }};transition:color .25s;position:relative;padding-bottom:4px;border-bottom:2px solid {{ workLine }};" style-hover="color:#fff;">مشاريعنا</a>
+    <a href="About.dc.html" data-en="About us" style="text-decoration:none;color:{{ aboutColor }};transition:color .25s;position:relative;padding-bottom:4px;border-bottom:2px solid {{ aboutLine }};" style-hover="color:#fff;">من نحن</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:9px;">
+    <button class="liquid-glass" onClick="{{ onToggleLang }}" style="width:42px;height:42px;border-radius:999px;color:var(--text,#fff);font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13px;cursor:pointer;">{{ langLabel }}</button>
+    <button class="liquid-glass" onClick="{{ onToggleTheme }}" style="width:42px;height:42px;border-radius:999px;color:var(--text,#fff);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;">{{ themeIcon }}</button>
+    <a href="About.dc.html" class="liquid-glass sm-hide" data-en="Start a project" style="text-decoration:none;color:var(--text,#fff);padding:11px 22px;border-radius:999px;font-weight:500;font-size:14px;white-space:nowrap;display:flex;align-items:center;">ابدأ مشروعك</a>
+    <button class="liquid-glass mb-burger" onClick="{{ toggleMenu }}" style="width:42px;height:42px;border-radius:999px;color:var(--text,#fff);cursor:pointer;align-items:center;justify-content:center;">
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></sc-if>
+      <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></sc-if>
+    </button>
+  </div>
+</header>
+
+<div ref="{{ menuRef }}" class="mb-menu" style="position:fixed;top:76px;left:12px;right:12px;z-index:45;background:rgba(12,12,12,.95);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);transform:translateY(-16px);opacity:0;pointer-events:none;transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .4s ease;display:flex;flex-direction:column;gap:4px;">
+  <a href="Services.dc.html" data-en="Services" style="text-decoration:none;color:#fff;padding:13px 14px;border-radius:12px;font-size:16px;transition:background .2s;" style-hover="background:rgba(255,255,255,.06);">خدماتنا</a>
+  <a href="Work.dc.html" data-en="Work" style="text-decoration:none;color:#fff;padding:13px 14px;border-radius:12px;font-size:16px;transition:background .2s;" style-hover="background:rgba(255,255,255,.06);">مشاريعنا</a>
+  <a href="About.dc.html" data-en="About us" style="text-decoration:none;color:#fff;padding:13px 14px;border-radius:12px;font-size:16px;transition:background .2s;" style-hover="background:rgba(255,255,255,.06);">من نحن</a>
+  <a href="About.dc.html" data-en="Start a project" style="text-decoration:none;text-align:center;background:#EF4A23;color:#fff;padding:14px;border-radius:12px;font-weight:600;margin-top:6px;">ابدأ مشروعك</a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:90},&quot;activePage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;services&quot;,&quot;work&quot;,&quot;about&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;logoHref&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;Busla.dc.html&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;themeIcon&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;☀&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;langLabel&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;EN&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onToggleTheme&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onToggleLang&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;transparent&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { menuOpen:false };
+    this.menuRef = React.createRef();
+  }
+  toggleMenu(){
+    this.setState(s => ({ menuOpen: !s.menuOpen }), () => {
+      const m = this.menuRef.current; if(!m) return;
+      if(this.state.menuOpen){ m.style.transform='translateY(0)'; m.style.opacity='1'; m.style.pointerEvents='auto'; }
+      else { m.style.transform='translateY(-16px)'; m.style.opacity='0'; m.style.pointerEvents='none'; }
+    });
+  }
+  renderVals(){
+    const active = this.props.activePage || 'home';
+    const on = 'rgba(255,255,255,.98)', off = 'rgba(255,255,255,.65)';
+    const transparent = !!this.props.transparent;
+    return {
+      headerBg: transparent ? 'transparent' : 'rgba(8,8,8,.35)',
+      headerBlur: transparent ? 'none' : 'blur(14px)',
+      headerBorder: transparent ? 'transparent' : 'rgba(255,255,255,.06)',
+      logoHref: this.props.logoHref || 'Busla.dc.html',
+      themeIcon: this.props.themeIcon || '\u2600',
+      langLabel: this.props.langLabel || 'EN',
+      onToggleTheme: this.props.onToggleTheme || (()=>{}),
+      onToggleLang: this.props.onToggleLang || (()=>{}),
+      servicesColor: active === 'services' ? on : off,
+      workColor: active === 'work' ? on : off,
+      aboutColor: active === 'about' ? on : off,
+      servicesLine: active === 'services' ? '#EF4A23' : 'transparent',
+      workLine: active === 'work' ? '#EF4A23' : 'transparent',
+      aboutLine: active === 'about' ? '#EF4A23' : 'transparent',
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      menuRef: this.menuRef,
+      toggleMenu: () => this.toggleMenu()
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{overflow-x:hidden;background:#0a0a0a;font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;}
+  ::selection{background:#EF4A23;color:#fff;}
+  a{-webkit-tap-highlight-color:transparent;}
+  @keyframes blurFadeUp{from{opacity:0;filter:blur(20px);transform:translateY(40px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+  .liquid-glass{background:rgba(255,255,255,0.01);background-blend-mode:luminosity;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:none;box-shadow:inset 0 1px 1px rgba(255,255,255,.1);position:relative;overflow:hidden;}
+  .liquid-glass::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.4px;background:linear-gradient(180deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,.15) 80%, rgba(255,255,255,.45) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+  .dt-nav{display:flex;}
+  .mb-burger{display:none;}
+  @media(max-width:1023px){.dt-nav{display:none !important;}.mb-burger{display:flex !important;}}
+  @media(min-width:1024px){.mb-menu{display:none !important;}}
+  @media(max-width:639px){.sm-hide{display:none !important;}}
+  .lightmode [data-logo]{filter:invert(1);}
+  @media(max-width:880px){.values-grid{grid-template-columns:repeat(2,1fr) !important;}.about-split{grid-template-columns:1fr !important;}.stats-grid{grid-template-columns:repeat(2,1fr) !important;}}
+  @media(max-width:560px){.values-grid{grid-template-columns:1fr !important;}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" lang="ar" style="min-height:100vh;background:var(--page-bg);color:var(--text);font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;position:relative;overflow-x:hidden;transition:background .7s ease,color .7s ease;--bg:#0a0a0a;--bg-2:#0e0e0e;--surface:#141414;--glass-card:rgba(255,255,255,.04);--glass-border:rgba(255,255,255,.1);--text:#f5f5f5;--text-dim:rgba(245,245,245,.6);--text-faint:rgba(245,245,245,.38);--line:rgba(255,255,255,.1);--line-strong:rgba(255,255,255,.18);--accent:#EF4A23;--accent-2:#ff6a45;--accent-soft:rgba(239,74,35,.14);--page-bg:radial-gradient(130% 110% at 50% -10%, #141414 0%, #0a0a0a 55%, #050505 100%);">
+
+  <dc-import name="Header" active-page="about" logo-href="Busla.dc.html" theme-icon="{{ themeIcon }}" lang-label="{{ langLabel }}" on-toggle-theme="{{ toggleTheme }}" on-toggle-lang="{{ toggleLang }}" hint-size="100%,90px"></dc-import>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;padding-top:90px;background:var(--bg);min-height:clamp(680px,88vh,920px);display:flex;flex-direction:column;">
+    <img src="assets/about-hero-building-opt.jpg" alt="" style="position:absolute;top:90px;left:0;right:0;bottom:0;width:100%;height:calc(100% - 90px);object-fit:cover;object-position:center 30%;z-index:0;">
+    <div style="position:absolute;top:90px;left:0;right:0;bottom:0;z-index:1;background:linear-gradient(100deg, rgba(4,4,4,.82) 0%, rgba(4,4,4,.25) 48%, rgba(4,4,4,.08) 100%), linear-gradient(0deg, rgba(4,4,4,.55) 0%, transparent 30%);"></div>
+    <div style="position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:clamp(90px,14vh,150px) clamp(20px,6vw,80px) clamp(120px,16vh,180px);flex:1;display:flex;align-items:center;">
+      <div data-fade="" data-delay="100" style="opacity:0;margin-left:auto;width:min(52ch,100%);text-align:right;">
+        <div data-en="ABOUT US" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.3em;color:var(--accent);margin-bottom:18px;text-align:right;">من نحن</div>
+        <h1 data-en="Every great project started with an idea." style="margin:0 0 24px;font-weight:500;font-size:clamp(32px,4.6vw,58px);line-height:1.15;letter-spacing:-.03em;text-align:right;">كل مشروع عظيم<br>يبدأ بفكرة.</h1>
+        <p data-en="We noticed that many entrepreneurs face recurring challenges at different stages of building their ventures. Having gone through this journey ourselves across several projects, we founded BUSLA to help founders build scalable ventures with more clarity and method." style="margin:0;color:var(--text-dim);line-height:1.85;font-size:15.5px;text-align:right;">رأينا أن كثيرًا من رواد الأعمال يواجهون تحديات متكررة في مراحل مختلفة من بناء مشاريعهم. وُجد أن مرنا بهذة الرحلة بأنفسنا في عدة مشاريع، أسسنا Busla لمساعدة المؤسسين على بناء مشاريع قابلة للنمو بطريقة أكثر وضوحًا ومنهجية.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY (overlaps hero) -->
+  <section style="max-width:1280px;margin:-90px auto 0;padding:0 clamp(20px,6vw,80px);position:relative;z-index:3;">
+    <div class="about-split" data-reveal="" style="opacity:0;filter:blur(12px);transform:translateY(28px);transition:all .9s cubic-bezier(.16,1,.3,1);display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(30px,5vw,64px);align-items:center;background:rgba(10,10,10,.82);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:22px;padding:clamp(28px,4.5vw,46px);">
+      <div style="text-align:right;">
+        <div data-en="OUR PHILOSOPHY" style="font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:11.5px;letter-spacing:.24em;margin-bottom:12px;">فلسفتنا</div>
+        <h2 data-en="The market is the compass." style="margin:0;font-weight:500;font-size:clamp(22px,2.8vw,32px);letter-spacing:-.03em;line-height:1.2;">السوق هو البوصلة.</h2>
+      </div>
+      <p data-en="We believe a project's success starts with understanding the market — not with assumptions or enthusiasm. Every decision must be built on a real need, not on what we think will work." style="margin:0;color:var(--text-dim);line-height:1.85;font-size:15px;">نؤمن أن نجاح المشروع يبدأ بفهم السوق، وليس بالافتراضات أو الحماس. كل قرار يجب أن يُبنى على احتياج حقيقي، وليس على ما نعتقد أنه سينجح.</p>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section style="max-width:1280px;margin:0 auto;padding:clamp(60px,9vh,100px) clamp(20px,6vw,80px) 0;">
+    <div data-reveal="" style="opacity:0;filter:blur(12px);transform:translateY(28px);transition:all .9s cubic-bezier(.16,1,.3,1);display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:clamp(36px,5vh,52px);">
+      <span class="liquid-glass" style="display:flex;align-items:center;gap:9px;border-radius:999px;padding:10px 20px;font-size:14px;color:var(--text);"><span style="color:var(--accent);font-size:15px;">+</span><span data-en="Experience">خبرة</span></span>
+      <span class="liquid-glass" style="display:flex;align-items:center;gap:9px;border-radius:999px;padding:10px 20px;font-size:14px;color:var(--text);"><span style="color:var(--accent);font-size:15px;">○</span><span data-en="Consistency">اتساق</span></span>
+      <span class="liquid-glass" style="display:flex;align-items:center;gap:9px;border-radius:999px;padding:10px 20px;font-size:14px;color:var(--text);"><span style="color:var(--accent);font-size:15px;">✦</span><span data-en="Quality">جودة</span></span>
+      <span class="liquid-glass" style="display:flex;align-items:center;gap:9px;border-radius:999px;padding:10px 20px;font-size:14px;color:var(--text);"><span style="color:var(--accent);font-size:15px;">□</span><span data-en="Dedication">التزام</span></span>
+    </div>
+
+    <div class="stats-grid" data-reveal="" style="opacity:0;filter:blur(12px);transform:translateY(28px);transition:all .9s cubic-bezier(.16,1,.3,1) .08s;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+      <div style="position:relative;overflow:hidden;border:1px solid var(--glass-border);border-radius:20px;background:var(--glass-card);padding:32px 26px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div aria-hidden="true" style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:clamp(70px,9vw,120px);font-weight:700;color:var(--text);opacity:.05;white-space:nowrap;line-height:1;pointer-events:none;">3x</div>
+        <div style="position:relative;font-weight:500;font-size:clamp(28px,3vw,38px);letter-spacing:-.03em;margin-bottom:6px;">3x</div>
+        <div data-en="Average client growth" style="position:relative;font-size:13.5px;color:var(--text-dim);">متوسط نمو عملائنا</div>
+      </div>
+      <div style="position:relative;overflow:hidden;border:1px solid var(--glass-border);border-radius:20px;background:var(--glass-card);padding:32px 26px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div aria-hidden="true" style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:clamp(70px,9vw,120px);font-weight:700;color:var(--text);opacity:.05;white-space:nowrap;line-height:1;pointer-events:none;">+8</div>
+        <div style="position:relative;font-weight:500;font-size:clamp(28px,3vw,38px);letter-spacing:-.03em;margin-bottom:6px;">+8</div>
+        <div data-en="Years of experience" style="position:relative;font-size:13.5px;color:var(--text-dim);">سنوات خبرة</div>
+      </div>
+      <div style="position:relative;overflow:hidden;border:1px solid var(--glass-border);border-radius:20px;background:var(--glass-card);padding:32px 26px;min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;">
+        <div aria-hidden="true" style="position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:clamp(70px,9vw,120px);font-weight:700;color:var(--text);opacity:.05;white-space:nowrap;line-height:1;pointer-events:none;">+40</div>
+        <div style="position:relative;font-weight:500;font-size:clamp(28px,3vw,38px);letter-spacing:-.03em;margin-bottom:6px;">+40</div>
+        <div data-en="Projects delivered" style="position:relative;font-size:13.5px;color:var(--text-dim);">مشروع منجز</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:min(900px,90vw);height:420px;background:radial-gradient(circle, var(--accent) 0%, transparent 65%);filter:blur(80px);opacity:.14;pointer-events:none;"></div>
+    <div style="position:relative;max-width:900px;margin:0 auto;padding:clamp(80px,12vh,140px) clamp(20px,6vw,80px);text-align:center;">
+      <div data-reveal="" style="opacity:0;filter:blur(12px);transform:translateY(28px);transition:all .9s cubic-bezier(.16,1,.3,1);">
+        <h2 data-en="Let's build something that grows" style="margin:0 auto 16px;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1.08;letter-spacing:-.03em;">من الفكرة إلى النمو</h2>
+        <p data-en="Tell us about your venture — we reply within one business day." style="margin:0 auto 32px;color:var(--text-dim);line-height:1.7;max-width:46ch;font-size:16px;">أخبرنا عن مشروعك، ونرد عليك خلال يوم عمل واحد.</p>
+        <a href="mailto:hello@busla.studio" data-en="Start a project" style="display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;text-decoration:none;padding:16px 32px;border-radius:999px;font-weight:600;font-size:15px;transition:background .2s,transform .2s;" style-hover="background:var(--accent-2);transform:translateY(-2px);"><span>ابدأ مشروعك</span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid var(--line);padding:46px clamp(20px,6vw,80px);">
+    <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;color:var(--text);"><img src="assets/busla-wordmark.png" style="flex:none;height:7px;width:auto;" alt="BUSLA"><img src="assets/busla-icon.png" style="flex:none;height:15px;width:auto;" alt=""></div>
+      <div data-en="© 2026 BUSLA Studio. All rights reserved." style="font-size:13px;color:var(--text-faint);">© 2026 استوديو بوصلة. جميع الحقوق محفوظة.</div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { theme:'dark', lang:'ar' };
+    this.rootRef = React.createRef();
+    this.lang = 'ar';
+    this.PAL = {
+      dark:{
+        '--bg':'#0a0a0a','--bg-2':'#0e0e0e','--surface':'#141414',
+        '--glass-card':'rgba(255,255,255,.04)','--glass-border':'rgba(255,255,255,.1)',
+        '--text':'#f5f5f5','--text-dim':'rgba(245,245,245,.6)','--text-faint':'rgba(245,245,245,.38)',
+        '--line':'rgba(255,255,255,.1)','--line-strong':'rgba(255,255,255,.18)',
+        '--accent-soft':'rgba(239,74,35,.14)',
+        '--page-bg':'radial-gradient(130% 110% at 50% -10%, #141414 0%, #0a0a0a 55%, #050505 100%)'
+      },
+      light:{
+        '--bg':'#f4f4f4','--bg-2':'#ececec','--surface':'#ffffff',
+        '--glass-card':'rgba(255,255,255,.7)','--glass-border':'rgba(16,16,16,.08)',
+        '--text':'#101010','--text-dim':'rgba(16,16,16,.6)','--text-faint':'rgba(16,16,16,.4)',
+        '--line':'rgba(16,16,16,.1)','--line-strong':'rgba(16,16,16,.18)',
+        '--accent-soft':'rgba(239,74,35,.1)',
+        '--page-bg':'radial-gradient(130% 110% at 50% -10%, #ffffff 0%, #f1f1f1 45%, #e6e6e6 100%)'
+      }
+    };
+  }
+  applyTheme(theme){
+    const r = this.rootRef.current; if(!r) return;
+    const p = this.PAL[theme] || this.PAL.dark;
+    for(const k in p) r.style.setProperty(k, p[k]);
+    r.classList.toggle('lightmode', theme === 'light');
+  }
+  componentDidMount(){
+    const savedTheme = localStorage.getItem('busla-theme');
+    const savedLang = localStorage.getItem('busla-lang');
+    const theme = savedTheme === 'light' ? 'light' : 'dark';
+    const lang = savedLang === 'en' ? 'en' : 'ar';
+    this.applyTheme(theme);
+    if(theme !== this.state.theme) this.setState({ theme });
+    if(lang === 'en') this.setLang('en');
+    this.setupObservers();
+    const root = this.rootRef.current;
+    if(root){
+      root.querySelectorAll('[data-fade]').forEach(el=>{
+        const d = el.getAttribute('data-delay') || 0;
+        el.style.animation = `blurFadeUp .9s ease-out ${d}ms forwards`;
+      });
+    }
+  }
+  componentDidUpdate(pp, ps){
+    if(!ps) return;
+    if(this.state.theme !== ps.theme) this.applyTheme(this.state.theme);
+  }
+  setLang(lang){
+    const r = this.rootRef.current; if(!r) return;
+    r.querySelectorAll('[data-en]').forEach(el=>{
+      if(el.dataset.arsaved === undefined) el.dataset.arsaved = el.textContent;
+      el.textContent = (lang === 'en') ? el.getAttribute('data-en') : el.dataset.arsaved;
+    });
+    r.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
+    r.setAttribute('lang', lang);
+    this.lang = lang;
+    this.setState({ lang });
+    localStorage.setItem('busla-lang', lang);
+  }
+  toggleLang(){ this.setLang(this.lang === 'en' ? 'ar' : 'en'); }
+  toggleTheme(){
+    const next = this.state.theme === 'dark' ? 'light' : 'dark';
+    this.applyTheme(next);
+    this.setState({ theme: next });
+    localStorage.setItem('busla-theme', next);
+  }
+  reveal(el){
+    if(el.dataset.shown) return;
+    el.dataset.shown = '1';
+    el.style.opacity = '1';
+    el.style.filter = 'blur(0)';
+    el.style.transform = 'none';
+  }
+  checkReveals(){
+    const root = this.rootRef.current; if(!root) return;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    root.querySelectorAll('[data-reveal]').forEach(el=>{
+      if(el.dataset.shown) return;
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.92) this.reveal(el);
+    });
+  }
+  setupObservers(){
+    this._check = () => this.checkReveals();
+    window.addEventListener('scroll', this._check, { passive:true });
+    window.addEventListener('resize', this._check, { passive:true });
+    this.checkReveals();
+    [200, 600, 1400].forEach(ms => setTimeout(this._check, ms));
+  }
+  renderVals(){
+    return {
+      rootRef: this.rootRef,
+      toggleTheme: () => this.toggleTheme(),
+      toggleLang: () => this.toggleLang(),
+      themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
+      langLabel: this.state.lang === 'ar' ? 'EN' : 'ع'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

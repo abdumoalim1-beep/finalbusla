@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{overflow:hidden;height:100vh;background:#0a0a0a;font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;}
+  html{overflow:hidden;height:100%;}
+  ::selection{background:#EF4A23;color:#fff;}
+  a{-webkit-tap-highlight-color:transparent;}
+  @keyframes blurFadeUp{from{opacity:0;filter:blur(20px);transform:translateY(40px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+  .liquid-glass{background:rgba(255,255,255,0.01);background-blend-mode:luminosity;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:none;box-shadow:inset 0 1px 1px rgba(255,255,255,.1);position:relative;overflow:hidden;}
+  .liquid-glass::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.4px;background:linear-gradient(180deg, rgba(255,255,255,.45) 0%, rgba(255,255,255,.15) 20%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,.15) 80%, rgba(255,255,255,.45) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+  .dt-nav{display:flex;}
+  .mb-burger{display:none;}
+  @media(max-width:1023px){.dt-nav{display:none !important;}.mb-burger{display:flex !important;}}
+  @media(min-width:1024px){.mb-menu{display:none !important;}}
+  @media(max-width:639px){.sm-hide{display:none !important;}}
+  .lightmode [data-logo]{filter:invert(1);}
+  .no-scrollbar::-webkit-scrollbar{display:none;}
+  .no-scrollbar{scrollbar-width:none;}
+  @keyframes floatY{0%,100%{transform:translateY(0) rotateX(0deg) rotateY(0deg)}50%{transform:translateY(-8px) rotateX(1deg) rotateY(1deg)}}
+  .fan-float{animation:floatY 10s ease-in-out infinite;}
+  .noise-overlay{position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .hero-pill{transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease,background .3s ease;}
+  .hero-pill:hover{transform:translateY(-2px);}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" dir="rtl" lang="ar" style="min-height:100vh;background:var(--page-bg);color:var(--text);font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;position:relative;overflow-x:visible;overflow-y:visible;transition:background .7s ease,color .7s ease;--bg:#0a0a0a;--bg-2:#0e0e0e;--surface:#141414;--glass-card:rgba(255,255,255,.04);--glass-border:rgba(255,255,255,.1);--text:#f5f5f5;--text-dim:rgba(245,245,245,.6);--text-faint:rgba(245,245,245,.38);--line:rgba(255,255,255,.1);--line-strong:rgba(255,255,255,.18);--accent:#EF4A23;--accent-2:#ff6a45;--accent-soft:rgba(239,74,35,.14);--page-bg:radial-gradient(130% 110% at 50% -10%, #141414 0%, #0a0a0a 55%, #050505 100%);">
+
+  <dc-import name="Header" active-page="work" logo-href="Busla.dc.html" theme-icon="{{ themeIcon }}" lang-label="{{ langLabel }}" on-toggle-theme="{{ toggleTheme }}" on-toggle-lang="{{ toggleLang }}" hint-size="100%,90px"></dc-import>
+
+  <!-- HERO + FEATURED FAN STACK -->
+  <section style="position:relative;height:100vh;overflow:hidden;display:flex;flex-direction:column;">
+    <div style="position:absolute;top:2%;left:38%;transform:translateX(-50%);width:min(900px,80vw);height:55%;background:radial-gradient(ellipse at center, var(--accent) 0%, transparent 68%);filter:blur(110px);opacity:.18;pointer-events:none;"></div>
+    <div style="position:absolute;top:10%;left:64%;transform:translateX(-50%);width:min(700px,60vw);height:50%;background:radial-gradient(ellipse at center, #7c5cff 0%, transparent 70%);filter:blur(120px);opacity:.10;pointer-events:none;"></div>
+    <div class="noise-overlay"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 160px 40px rgba(0,0,0,.55);"></div>
+
+    <div style="position:relative;z-index:2;flex:none;max-width:1280px;margin:0 auto;padding:clamp(104px,13vh,124px) clamp(20px,6vw,80px) 0;width:100%;">
+      <div data-fade="" data-delay="100" style="opacity:0;text-align:center;margin:0 auto;">
+        <h1 data-en="Ideas turned into projects that grow." style="margin:0 0 6px;font-weight:600;font-size:clamp(24px,3.4vw,40px);line-height:1.1;letter-spacing:-.03em;max-width:18ch;margin-inline:auto;">أفكار تحوّلت إلى مشاريع تنمو.</h1>
+        <p data-en="A selection of the work we've shipped across fintech, retail, and SaaS." style="margin:0 auto;color:var(--text-dim);max-width:48ch;line-height:1.45;font-size:13px;">مجموعة مختارة من المشاريع التي أنجزناها عبر الفينتك والتجارة الإلكترونية والساس.</p>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:14px;">
+        <div class="liquid-glass" style="display:inline-flex;padding:5px;border-radius:999px;gap:4px;box-shadow:0 12px 30px rgba(0,0,0,.35);">
+          <button onClick="{{ setModeMvp }}" class="hero-pill" style="{{ mvpTabStyle }}">MVP</button>
+          <button onClick="{{ setModePitch }}" class="hero-pill" style="{{ pitchTabStyle }}">العروض التقديمية</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="fan-float" data-reveal="" style="opacity:0;filter:blur(12px);transition:opacity .9s cubic-bezier(.16,1,.3,1),filter .9s cubic-bezier(.16,1,.3,1);position:relative;z-index:1;flex:1 1 auto;min-height:0;display:flex;align-items:flex-end;justify-content:center;">
+      <div ref="{{ fanStageRef }}" style="position:relative;width:100%;height:clamp(400px,60vh,700px);max-height:94%;transform:translateY(28px);display:flex;align-items:flex-end;justify-content:center;touch-action:pan-y;cursor:grab;perspective:2000px;transition:transform .4s ease;">
+        <sc-for list="{{ fanCards }}" as="f" hint-placeholder-count="5">
+          <div onClick="{{ f.onClick }}" style="{{ f.style }}" style-hover="{{ f.hoverStyle }}">
+            <img src="{{ f.image }}" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none;filter:{{ f.filter }};" alt="{{ f.title }}">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,.6) 0%, transparent 48%);"></div>
+            <div style="position:absolute;left:0;right:0;bottom:0;padding:22px;">
+              <div style="color:#fff;font-weight:600;font-size:17px;">{{ f.title }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMING SOON MODAL ============ -->
+  <sc-if value="{{ comingSoon }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeComingSoon }}" style="position:fixed;inset:0;z-index:300;background:rgba(5,5,5,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;animation:blurFadeUp .35s ease-out;">
+      <div onClick="{{ stopProp }}" style="width:min(420px,100%);background:var(--surface);border:1px solid var(--line-strong);border-radius:22px;padding:44px 32px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;">
+        <button onClick="{{ closeComingSoon }}" style="position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--glass-border);background:var(--glass-card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        </div>
+        <h3 data-en="Coming soon" style="margin:0 0 10px;font-size:22px;font-weight:600;">قريباً</h3>
+        <p data-en="We're preparing our pitch deck showcase. Check back soon." style="margin:0;color:var(--text-dim);font-size:14.5px;line-height:1.7;">نعمل حالياً على تجهيز معرض العروض التقديمية، تابعونا قريباً.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- WORK GRID -->
+  <!-- ============ PROJECT DETAIL (full page) ============ -->
+  <sc-if value="{{ activeProject }}" hint-placeholder-val="{{ false }}">
+    <div class="no-scrollbar" style="position:fixed;inset:0;z-index:200;background:var(--bg);overflow-y:auto;animation:blurFadeUp .4s ease-out;">
+      <dc-import name="Header" active-page="work" logo-href="Busla.dc.html" theme-icon="{{ themeIcon }}" lang-label="{{ langLabel }}" on-toggle-theme="{{ toggleTheme }}" on-toggle-lang="{{ toggleLang }}" hint-size="100%,90px"></dc-import>
+
+      <!-- HERO -->
+      <div style="position:relative;height:min(38vh,360px);min-height:240px;overflow:hidden;">
+        <img src="{{ activeProject.image }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" alt="{{ activeProject.title }}">
+        <div style="position:absolute;inset:0;background:linear-gradient(0deg, var(--bg) 0%, rgba(10,10,10,.15) 65%, rgba(10,10,10,.1) 100%);"></div>
+      </div>
+
+      <!-- BODY -->
+      <div style="max-width:900px;margin:0 auto;padding:clamp(40px,6vh,60px) clamp(20px,6vw,40px) clamp(80px,12vh,120px);">
+
+        <!-- Back -->
+        <button onClick="{{ closeModal }}" style="display:flex;align-items:center;gap:8px;background:var(--glass-card);border:1px solid var(--glass-border);color:var(--text);padding:10px 18px;border-radius:999px;font-size:13.5px;cursor:pointer;margin-bottom:28px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span data-en="Back to Work">رجوع لكل المشاريع</span>
+        </button>
+
+        <!-- Title -->
+        <div style="margin-bottom:clamp(36px,5.5vh,52px);">
+          <h1 style="margin:0;color:var(--text);font-weight:500;font-size:clamp(28px,4.4vw,46px);line-height:1.12;letter-spacing:-.03em;max-width:20ch;">{{ activeProject.title }}</h1>
+        </div>
+
+        <!-- Problem & market -->
+        <div style="margin-bottom:clamp(44px,7vh,64px);">
+          <div data-en="The Problem" style="font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:12px;letter-spacing:.22em;margin-bottom:14px;">المشكلة والسوق</div>
+          <p style="margin:0 0 24px;font-size:clamp(16px,1.6vw,19px);line-height:1.8;color:var(--text);">{{ activeProject.problem }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;">
+            <sc-for list="{{ activeProject.stats }}" as="s" hint-placeholder-count="2">
+              <div class="liquid-glass" style="border-radius:16px;padding:18px 24px;min-width:150px;">
+                <div style="font-weight:600;font-size:clamp(22px,2.4vw,28px);color:var(--accent);letter-spacing:-.02em;margin-bottom:4px;">{{ s.value }}</div>
+                <div style="font-size:13px;color:var(--text-dim);">{{ s.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- Solution -->
+        <div style="margin-bottom:clamp(44px,7vh,64px);">
+          <div data-en="The Solution" style="font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:12px;letter-spacing:.22em;margin-bottom:14px;">الحل</div>
+          <p style="margin:0 0 22px;color:var(--text-dim);line-height:1.85;font-size:15.5px;">{{ activeProject.description }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <sc-for list="{{ activeProject.tech }}" as="t" hint-placeholder-count="4">
+              <span class="liquid-glass" style="padding:6px 14px;border-radius:999px;font-size:12.5px;color:var(--text);">{{ t }}</span>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- Achievements -->
+        <div style="margin-bottom:clamp(44px,7vh,64px);">
+          <div data-en="Achievements" style="font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:12px;letter-spacing:.22em;margin-bottom:14px;">الإنجازات</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ activeProject.achievements }}" as="a" hint-placeholder-count="3">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:3px;"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span style="font-size:14.5px;color:var(--text-dim);line-height:1.6;">{{ a }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- Project image -->
+        <div>
+          <div data-en="Project Glimpse" style="font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:12px;letter-spacing:.22em;margin-bottom:14px;">لمحة من المشروع</div>
+          <div style="border-radius:18px;overflow:hidden;border:1px solid var(--glass-border);">
+            <img src="{{ activeProject.image }}" style="width:100%;height:auto;display:block;" alt="{{ activeProject.title }}">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- OTHER PROJECTS -->
+      <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,6vw,80px) clamp(70px,10vh,100px);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.3em;color:var(--accent);margin-bottom:18px;text-align:center;">مشاريع أخرى</div>
+        <h2 style="margin:0 0 32px;text-align:center;font-weight:500;font-size:clamp(24px,3vw,36px);letter-spacing:-.03em;">تصفّح المزيد من أعمالنا</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+          <sc-for list="{{ activeProject.related }}" as="r" hint-placeholder-count="3">
+            <div onClick="{{ r.onOpen }}" style="cursor:pointer;color:var(--text);border:1px solid var(--glass-border);border-radius:18px;overflow:hidden;background:var(--surface);transition:border-color .25s,transform .25s;" style-hover="border-color:var(--line-strong);transform:translateY(-4px);">
+              <div style="position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--bg-2);">
+                <img src="{{ r.image }}" style="width:100%;height:100%;object-fit:cover;" alt="{{ r.title }}">
+              </div>
+              <div style="padding:20px;">
+                <h3 style="margin:0;font-size:16.5px;font-weight:600;">{{ r.title }}</h3>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="border-top:1px solid var(--line);padding:36px clamp(20px,6vw,80px);">
+        <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:8px;color:var(--text);"><img src="assets/busla-wordmark.png" style="flex:none;height:7px;width:auto;" alt="BUSLA"><img src="assets/busla-icon.png" style="flex:none;height:15px;width:auto;" alt=""></div>
+          <div style="font-size:13px;color:var(--text-faint);">© 2026 استوديو بوصلة. جميع الحقوق محفوظة.</div>
+        </div>
+      </footer>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { theme:'dark', lang:'ar', activeProjectIndex:null, featuredIndex:0, viewMode:'mvp', fanMounted:false };
+    this.rootRef = React.createRef();
+    this.fanStageRef = React.createRef();
+    this.lang = 'ar';
+    this.PROJECTS = [
+      { image:'assets/work-1-tablet.png',
+        category:{ar:'ذكاء اصطناعي / إنترنت الأشياء',en:'AI / IoT'},
+        title:{ar:'Tire-AI',en:'Tire-AI'},
+        short:{ar:'منصة تعتمد على الذكاء الاصطناعي وإنترنت الأشياء لمراقبة إطارات الشاحنات لحظيًا، واكتشاف مؤشرات الإجهاد والحرارة وعدم توازن الحمولة قبل حدوث الانفجار، مما يقلل الحوادث ويزيد كفاءة الأساطيل.',en:'An AI and IoT platform that monitors truck tires in real time, detecting stress, heat, and load-imbalance signals before a blowout occurs — reducing accidents and boosting fleet efficiency.'},
+        problem:{ar:'تعاني الشاحنات من أعطال داخلية في الإطارات لا يمكن ملاحظتها بالعين المجردة، مثل الإجهاد الداخلي، والنقاط الحرارية، وانفصال الطبقات، والتمزقات الدقيقة، والتي تُعد من أبرز أسباب انفجار الإطارات أثناء القيادة.',en:'Trucks suffer from internal tire faults invisible to the naked eye — internal stress, hot spots, ply separation, and micro-tears — among the leading causes of tire blowouts while driving.'},
+        stats:[{value:'32%',label:{ar:'من حوادث الشاحنات يكون سببها انفجار الإطارات',en:'of truck accidents are caused by tire blowouts'}},{value:'3 مليارات كم',label:{ar:'تقطعها الشاحنات سنويًا في المملكة، مما يجعل سلامة الإطارات عاملًا حاسمًا في النقل والسلامة',en:'driven by trucks annually in the Kingdom, making tire safety a critical factor in transport and safety'}}],
+        description:{ar:'طوّرنا جهازًا ذكيًا مزودًا بأكثر من 12 مؤشرًا داخليًا يراقب حالة الإطار لحظيًا، ويرسل البيانات إلى منصة تحليل تعتمد على الذكاء الاصطناعي للتنبؤ بالأعطال، وإطلاق تنبيهات فورية قبل وقوع الخطر، مما يرفع السلامة ويخفض تكاليف التشغيل.',en:'We built a smart device with 12+ internal sensors monitoring tire condition in real time, streaming data to an AI analytics platform that predicts failures and fires instant alerts before danger occurs — raising safety and cutting operating costs.'},
+        tech:['Artificial Intelligence','IoT Sensors','Predictive Analytics','Embedded Systems','Real-time Monitoring','Dashboard'],
+        achievements:{ar:['مراقبة أكثر من 12 مؤشرًا داخليًا للإطار بشكل لحظي','معالجة أكثر من 1800 قراءة للإجهاد والحرارة','بناء أكثر من 60 سيناريو محاكاة لاختبار المخاطر','يستهدف خفض حوادث الإطارات بنسبة 50% وتقليل خسائر الأساطيل'],en:['Monitors 12+ internal tire indicators in real time','Processes 1,800+ stress and heat readings','Built 60+ simulation scenarios to test risk','Targets a 50% cut in tire-related accidents and fleet losses']} },
+      { image:'assets/work-2-energy.png',
+        category:{ar:'صناعي / إنترنت الأشياء',en:'Industrial / IoT'},
+        title:{ar:'نظام راصد',en:'Rasid System'},
+        short:{ar:'منصة ذكية لمراقبة المصانع تعتمد على الذكاء الاصطناعي وتحليل البيانات اللحظي، تمنح فرق التشغيل رؤية مباشرة تساعد على اكتشاف الأعطال، وتحسين كفاءة الإنتاج، وتقليل الهدر.',en:'A smart factory-monitoring platform powered by AI and real-time data analysis, giving operations teams direct visibility to catch faults, boost production efficiency, and cut waste.'},
+        problem:{ar:'قد يؤدي توقف خط إنتاج واحد إلى خسائر تتجاوز 50,000 ريال في الساعة، بينما تعتمد الكثير من المصانع على أنظمة مراقبة متفرقة تجعل اكتشاف الأعطال بطيئًا ومتأخرًا.',en:'A single production line going down can cost over 50,000 SAR per hour, while many factories rely on fragmented monitoring systems that make fault detection slow and delayed.'},
+        stats:[{value:'72%',label:{ar:'من الأعطال تبدأ بمؤشرات بسيطة يصعب ملاحظتها يدويًا',en:'of faults start with subtle signals that are hard to notice manually'}},{value:'8 دقائق',label:{ar:'متوسط الوقت الذي تستغرقه فرق التشغيل لاكتشاف المشكلة بعد حدوثها',en:'average time it takes operations teams to detect a problem after it occurs'}}],
+        description:{ar:'طوّرنا راصد ليحلل بيانات المصنع لحظيًا، ويراقب أكثر من 45 معيارًا تشغيليًا في الوقت نفسه، مع تنبيهات ذكية ولوحات معلومات تفاعلية تساعد على اكتشاف المشكلات خلال ثوانٍ قبل أن تؤثر على الإنتاج.',en:'We built Rasid to analyze factory data in real time, monitoring 45+ operational metrics simultaneously, with smart alerts and interactive dashboards that catch issues within seconds before they affect production.'},
+        tech:['Artificial Intelligence','Industrial IoT','SCADA','Real-time Analytics','MQTT','Node.js','PostgreSQL'],
+        achievements:{ar:['مراقبة أكثر من 45 معيارًا تشغيليًا في الوقت نفسه','تحليل البيانات وإظهار التنبيهات خلال أقل من 3 ثوانٍ','جاهزية النظام للمراقبة المستمرة بنسبة 99.9%','تقليل الوقت اللازم لاكتشاف الأعطال بنسبة 60%'],en:['Monitors 45+ operational metrics in real time','Analyzes data and surfaces alerts in under 3 seconds','99.9% system uptime for continuous monitoring','Cuts fault-detection time by 60%']} },
+      { image:'assets/work-3-band.png',
+        category:{ar:'صحة رقمية / إنترنت الأشياء',en:'Digital Health / IoT'},
+        title:{ar:'سوار وصال',en:'Wisal Band'},
+        short:{ar:'سوار ذكي يعتمد على الذكاء الاصطناعي لمراقبة المؤشرات الحيوية والتنبؤ بنوبات الصرع قبل حدوثها بـ 5–10 دقائق، مع إرسال تنبيهات فورية للأهل والمسعفين والمحيطين لتقليل الإصابات وإنقاذ الأرواح.',en:'A smart AI-powered band that monitors vital signs and predicts epileptic seizures 5–10 minutes before they occur, sending instant alerts to family, first responders, and bystanders to reduce injuries and save lives.'},
+        problem:{ar:'يعاني مرضى الصرع من نوبات مفاجئة قد تؤدي إلى إصابات خطيرة أو فقدان الوعي دون وجود إنذار مسبق، مما يعرّضهم للخطر ويؤثر على حياتهم اليومية واستقلاليتهم. كما يوجد أكثر من 50 مليون مصاب بالصرع حول العالم، مع تسجيل 5 ملايين حالة جديدة سنويًا.',en:"Epilepsy patients experience sudden seizures that can cause serious injury or loss of consciousness with no prior warning, putting them at risk and affecting their daily life and independence. Over 50 million people live with epilepsy worldwide, with 5 million new cases diagnosed each year."},
+        stats:[{value:'كل 33 ثانية',label:{ar:'تحدث نوبة صرع لشخص ما حول العالم',en:'a seizure occurs somewhere in the world'}},{value:'50 مليون',label:{ar:'شخص يعيشون مع الصرع عالميًا، مع أكثر من 5 ملايين إصابة جديدة كل عام',en:'people live with epilepsy globally, with over 5 million new cases each year'}}],
+        description:{ar:'طوّرنا سوار وصال، وهو جهاز ذكي يراقب المؤشرات الحيوية للمريض ويستخدم الذكاء الاصطناعي للتنبؤ بالنوبة قبل حدوثها بـ 5–10 دقائق، مع تصنيف مستوى الخطورة وإرسال تنبيهات فورية للأهل والمسعفين، بالإضافة إلى مشاركة الموقع الجغرافي للمريض لتسريع الاستجابة وتقليل المخاطر.',en:"We built Wisal Band, a smart device that monitors the patient's vital signs and uses AI to predict a seizure 5–10 minutes before it happens, classifying risk level and sending instant alerts to family and first responders — plus sharing the patient's location to speed up response and reduce risk."},
+        tech:['Artificial Intelligence','Wearable Technology','IoT','Pulse Sensor','Ultrasonic Sensor','Mobile Application','Real-time Monitoring','Emergency Alert System','Predictive Analytics'],
+        achievements:{ar:['التنبؤ بنوبات الصرع قبل حدوثها بـ 5–10 دقائق','إرسال تنبيهات فورية للمحيطين والأهل والمسعفين','تحديد الموقع الجغرافي أثناء النوبة','تقليل زمن الاستجابة للطوارئ وتحسين خطط العلاج عبر توفير بيانات دقيقة للطبيب','تصميم أولي منخفض التكلفة بسعر تصنيع يقارب 100 ريال للسوار'],en:['Predicts epileptic seizures 5–10 minutes before onset','Sends instant alerts to bystanders, family, and first responders','Pinpoints location during a seizure','Cuts emergency response time and improves treatment plans with accurate physician data','Low-cost early design at a manufacturing price of roughly 100 SAR per band']} },
+      { image:'assets/work-4-app.png',
+        category:{ar:'تطبيق جوال',en:'Mobile App'},
+        title:{ar:'تطبيق مِراس',en:'Meraas App'},
+        short:{ar:'منصة محتوى صوتي مدعومة بالذكاء الاصطناعي، صُممت لتقديم تجربة استماع مخصصة تساعد المستخدمين على اكتشاف المحتوى المناسب بسرعة وسهولة.',en:'An AI-powered audio content platform delivering a personalized listening experience that helps users discover the right content quickly and easily.'},
+        problem:{ar:'مع تنوع المحتوى الصوتي، أصبح العثور على المحتوى المناسب تحديًا حقيقيًا للمستخدمين، مما يؤثر على تجربة الاستماع ومعدل التفاعل.',en:'With the sheer variety of audio content, finding the right content became a real challenge for users, affecting listening experience and engagement.'},
+        stats:[{value:'80%',label:{ar:'من المستمعين يتوقفون عن الاستماع خلال أول 5 دقائق',en:'of listeners drop off within the first 5 minutes'}},{value:'6 من كل 10',label:{ar:'يعانون من صعوبة في العثور على محتوى يناسب اهتماماتهم',en:'struggle to find content matching their interests'}}],
+        description:{ar:'اعتمدنا على بناء منصة مدعومة بالذكاء الاصطناعي تقدم توصيات ذكية وتجربة استماع مخصصة، مع تصميم تجربة مستخدم بسيطة تقلل وقت الوصول إلى المحتوى المناسب وتزيد من التفاعل.',en:'We built an AI-powered platform delivering smart recommendations and a personalized listening experience, with a simple UX that reduces time-to-content and increases engagement.'},
+        tech:['React Native','Firebase','Node.js','OpenAI','AI Recommendation Engine'],
+        achievements:{ar:['زيادة معدل الاستماع للمحتوى بأكثر من 40%','تقليل تكاليف إنتاج المحتوى بأكثر من 60%','دعم التحول الرقمي في قطاع النشر','تحسين تجربة اكتشاف المحتوى للمستخدمين'],en:['Increased content listening rate by over 40%','Cut content production costs by over 60%','Supported digital transformation in the publishing sector','Improved content discovery experience for users']} },
+      { image:'assets/work-5-architecture.png',
+        category:{ar:'عقاري / ذكاء اصطناعي',en:'Real Estate / AI'},
+        title:{ar:'منصة رهوة',en:'Rahwa Platform'},
+        short:{ar:'منصة ذكاء اصطناعي تساعد المعماريين والمكاتب الهندسية على تحويل الأفكار إلى تصاميم معمارية مطابقة للكود العمراني والهوية المحلية، مع تقليل الوقت والأخطاء في دورة التصميم.',en:'An AI platform helping architects and engineering firms turn ideas into architectural designs compliant with building codes and local identity — cutting time and errors in the design cycle.'},
+        problem:{ar:'تعتمد عملية إعداد المخططات المعمارية على مراجعات يدوية متكررة، مما يؤدي إلى رفض المعاملات، وتأخير التنفيذ، وارتفاع تكلفة إعادة العمل.',en:'Producing architectural drawings relied on repeated manual reviews, leading to permit rejections, delivery delays, and costly rework.'},
+        stats:[{value:'2.3 مليار ريال',label:{ar:'خسائر سنوية مرتبطة بعدم مطابقة المشاريع للكود العمراني',en:'in annual losses linked to projects failing to meet building codes'}},{value:'80%',label:{ar:'من حالات رفض المخططات تنتج عن أخطاء متكررة يمكن اكتشافها مبكرًا',en:'of drawing rejections stem from recurring errors that can be caught early'}}],
+        description:{ar:'طوّرنا منصة تعتمد على الذكاء الاصطناعي لتحليل المشروع، ومطابقته مع الكود العمراني والهوية المحلية، ثم إنتاج تصاميم وتقارير ومخططات BIM جاهزة للتنفيذ، مما يقلل وقت المراجعة ويزيد جودة المخرجات.',en:'We built an AI-powered platform that analyzes the project, checks it against building codes and local identity, then produces designs, reports, and BIM-ready drawings — cutting review time and raising output quality.'},
+        tech:['OpenAI','BIM','GIS','React','Node.js','Three.js'],
+        achievements:{ar:['تحويل الفكرة إلى مخطط أولي خلال 120 ثانية','تقليل أخطاء التصميم وإعادة العمل بأكثر من 80%','رفع الالتزام بالكود العمراني والهوية المحلية بأكثر من 30%','إصدار تقارير ومخططات BIM جاهزة للتنفيذ'],en:['Turns an idea into an initial plan within 120 seconds','Cuts design errors and rework by over 80%','Raises building-code and local-identity compliance by over 30%','Delivers construction-ready reports and BIM drawings']} }
+    ];
+    this.PITCH_PROJECTS = [
+      { image:'assets/work-1-tablet.png',
+        category:{ar:'عرض تقديمي / توصيل',en:'Pitch Deck / Delivery'},
+        title:{ar:'عرض تمويل تطبيق التوصيل السريع',en:'Fast-Delivery App Seed Deck'},
+        short:{ar:'عرض تقديمي لجولة تمويل تأسيسية لتطبيق توصيل يعمل بالذكاء الاصطناعي.',en:'A seed-round pitch deck for an AI-powered delivery app.'},
+        problem:{ar:'المؤسسون كانوا يملكون فكرة قوية لكن دون سردية واضحة تقنع المستثمرين بحجم الفرصة وحجم السوق.',en:'The founders had a strong idea but no clear narrative to convince investors of the market opportunity.'},
+        stats:[{value:'2.4M$',label:{ar:'تم جمعها بعد العرض',en:'Raised after the deck'}},{value:'14',label:{ar:'اجتماع مستثمر',en:'Investor meetings'}}],
+        description:{ar:'صممنا عرضاً تقديمياً كاملاً يبرز المشكلة والحجم السوقي والنموذج المالي، مع سردية بصرية واضحة توصل الفرصة الاستثمارية بثقة.',en:'We designed a full pitch deck highlighting the problem, market size, and financial model, with a clear visual narrative.'},
+        tech:['Pitch Strategy','Financial Modeling','Visual Design'],
+        achievements:{ar:['جمع 2.4 مليون دولار بعد العرض','14 اجتماعاً مع مستثمرين','إغلاق الجولة خلال 5 أسابيع'],en:['Raised $2.4M after the deck','14 investor meetings','Round closed within 5 weeks']} },
+      { image:'assets/work-2-energy.png',
+        category:{ar:'عرض تقديمي / تعليم',en:'Pitch Deck / EdTech'},
+        title:{ar:'عرض تأسيسي لمنصة تعليمية',en:'EdTech Pre-Seed Deck'},
+        short:{ar:'عرض تقديمي لمنصة تعلّم إلكتروني تستهدف المرحلة الثانوية.',en:'A pre-seed pitch deck for a high-school e-learning platform.'},
+        problem:{ar:'الفريق كان يمتلك منتجاً أولياً لكن العرض السابق لم ينجح في توضيح التمايز عن المنافسين.',en:'The team had an early product but their previous deck failed to show differentiation from competitors.'},
+        stats:[{value:'900K$',label:{ar:'تم جمعها في الجولة',en:'Raised in the round'}},{value:'8',label:{ar:'أسابيع حتى الإغلاق',en:'Weeks to close'}}],
+        description:{ar:'أعدنا بناء العرض التقديمي من الصفر: قصة أوضح، مقارنة تنافسية مباشرة، وتوقعات نمو مبنية على بيانات حقيقية من المستخدمين الأوائل.',en:'We rebuilt the deck from scratch: a clearer story, direct competitive comparison, and growth projections based on real early-user data.'},
+        tech:['Pitch Strategy','Data Storytelling','Visual Design'],
+        achievements:{ar:['جمع 900 ألف دولار في الجولة','إغلاق الجولة خلال 8 أسابيع','تبنّته 3 مسرّعات أعمال كمرجع'],en:['Raised $900K in the round','Closed within 8 weeks','Used as a reference by 3 accelerators']} },
+      { image:'assets/work-3-band.png',
+        category:{ar:'عرض تقديمي / تجارة إلكترونية',en:'Pitch Deck / E-commerce'},
+        title:{ar:'عرض توسع لمتجر تجارة إلكترونية',en:'E-commerce Series A Deck'},
+        short:{ar:'عرض جولة توسع لمتجر إلكتروني إقليمي يستعد للنمو خارج السعودية.',en:'A Series A expansion deck for a regional e-commerce brand.'},
+        problem:{ar:'المتجر كان ينمو محلياً بقوة، لكن لم يملك عرضاً يوضح خطة التوسع الإقليمي للمستثمرين الجدد.',en:'The brand was growing locally but lacked a deck explaining its regional expansion plan to new investors.'},
+        stats:[{value:'6M$',label:{ar:'حجم الجولة المستهدفة',en:'Target round size'}},{value:'3',label:{ar:'أسواق توسع جديدة',en:'New expansion markets'}}],
+        description:{ar:'بنينا عرضاً يركّز على مقاييس النمو الفعلية ووحدة الاقتصاد، مع خطة توسع مرحلية توضح كيف سيُستخدم التمويل بدقة.',en:'We built a deck focused on real growth metrics and unit economics, with a phased expansion plan showing exactly how funding would be used.'},
+        tech:['Pitch Strategy','Financial Modeling','Market Research'],
+        achievements:{ar:['استهداف جولة بقيمة 6 ملايين دولار','خطة دخول 3 أسواق جديدة','تقديم العرض لأكثر من 20 صندوق استثمار'],en:['Targeted a $6M round','3-market expansion plan','Presented to 20+ investment funds']} },
+      { image:'assets/work-4-app.png',
+        category:{ar:'عرض تقديمي / لوجستيات',en:'Pitch Deck / Logistics'},
+        title:{ar:'عرض نمو لمنصة لوجستية',en:'Logistics Growth Deck'},
+        short:{ar:'عرض تقديمي لمنصة لوجستية تربط الشاحنات بطلبات الشحن مباشرة.',en:'A growth-round deck for a platform matching trucks with shipping demand.'},
+        problem:{ar:'المنصة كانت تملك أرقام تشغيل قوية لكنها مبعثرة، دون عرض واحد يجمعها بصورة مقنعة للمستثمرين.',en:'The platform had strong operating numbers, but scattered — with no single deck presenting them convincingly.'},
+        stats:[{value:'4.1M$',label:{ar:'تم جمعها في جولة النمو',en:'Raised in the growth round'}},{value:'x3',label:{ar:'نمو حجم الشحنات سنوياً',en:'YoY shipment growth'}}],
+        description:{ar:'جمعنا بيانات التشغيل المتناثرة في عرض واحد واضح يبرز نمو حجم الشحنات وكفاءة التشغيل، مع خطة استخدام واضحة للتمويل.',en:'We consolidated scattered operating data into one clear deck highlighting shipment growth and operational efficiency.'},
+        tech:['Pitch Strategy','Data Visualization','Financial Modeling'],
+        achievements:{ar:['جمع 4.1 مليون دولار في جولة النمو','نمو حجم الشحنات 3 أضعاف سنوياً','تبنّته 4 صناديق استثمار إقليمية'],en:['Raised $4.1M in the growth round','3x YoY shipment growth','Backed by 4 regional investment funds']} },
+      { image:'assets/work-5-architecture.png',
+        category:{ar:'عرض تقديمي / تقنية مالية',en:'Pitch Deck / Fintech'},
+        title:{ar:'عرض تمويل لشركة تقنية مالية',en:'Fintech Seed Deck'},
+        short:{ar:'عرض جولة تأسيسية لشركة مدفوعات ناشئة تستهدف المنشآت الصغيرة.',en:'A seed pitch deck for a payments startup targeting small businesses.'},
+        problem:{ar:'الفريق كان يواجه صعوبة في تبسيط منتج مالي معقد إلى عرض مفهوم خلال دقائق قليلة أمام المستثمرين.',en:'The team struggled to simplify a complex financial product into a deck investors could grasp in minutes.'},
+        stats:[{value:'1.8M$',label:{ar:'تم جمعها في الجولة',en:'Raised in the round'}},{value:'6',label:{ar:'أسابيع فقط للإغلاق',en:'Weeks to close'}}],
+        description:{ar:'بسّطنا الفكرة إلى رسالة واحدة واضحة، مدعومة بمخططات توضح تدفق الإيرادات ونموذج التسعير بطريقة سهلة الفهم لأي مستثمر.',en:'We simplified the idea into one clear message, backed by diagrams explaining revenue flow and pricing in a way any investor could grasp.'},
+        tech:['Pitch Strategy','Financial Modeling','Visual Design'],
+        achievements:{ar:['جمع 1.8 مليون دولار في الجولة','إغلاق الجولة خلال 6 أسابيع فقط','استخدم كنموذج تدريبي لمؤسسين آخرين'],en:['Raised $1.8M in the round','Closed in just 6 weeks','Used as a training example for other founders']} }
+    ];
+    this.PAL = {
+      dark:{
+        '--bg':'#0a0a0a','--bg-2':'#0e0e0e','--surface':'#141414',
+        '--glass-card':'rgba(255,255,255,.04)','--glass-border':'rgba(255,255,255,.1)',
+        '--text':'#f5f5f5','--text-dim':'rgba(245,245,245,.6)','--text-faint':'rgba(245,245,245,.38)',
+        '--line':'rgba(255,255,255,.1)','--line-strong':'rgba(255,255,255,.18)',
+        '--accent-soft':'rgba(239,74,35,.14)',
+        '--page-bg':'radial-gradient(130% 110% at 50% -10%, #141414 0%, #0a0a0a 55%, #050505 100%)'
+      },
+      light:{
+        '--bg':'#f4f4f4','--bg-2':'#ececec','--surface':'#ffffff',
+        '--glass-card':'rgba(255,255,255,.7)','--glass-border':'rgba(16,16,16,.08)',
+        '--text':'#101010','--text-dim':'rgba(16,16,16,.6)','--text-faint':'rgba(16,16,16,.4)',
+        '--line':'rgba(16,16,16,.1)','--line-strong':'rgba(16,16,16,.18)',
+        '--accent-soft':'rgba(239,74,35,.1)',
+        '--page-bg':'radial-gradient(130% 110% at 50% -10%, #ffffff 0%, #f1f1f1 45%, #e6e6e6 100%)'
+      }
+    };
+  }
+  applyTheme(theme){
+    const r = this.rootRef.current; if(!r) return;
+    const p = this.PAL[theme] || this.PAL.dark;
+    for(const k in p) r.style.setProperty(k, p[k]);
+    r.classList.toggle('lightmode', theme === 'light');
+  }
+  componentDidMount(){
+    const savedTheme = localStorage.getItem('busla-theme');
+    const savedLang = localStorage.getItem('busla-lang');
+    const theme = savedTheme === 'light' ? 'light' : 'dark';
+    const lang = savedLang === 'en' ? 'en' : 'ar';
+    this.applyTheme(theme);
+    if(theme !== this.state.theme) this.setState({ theme });
+    if(lang === 'en') this.setLang('en');
+    this.setupObservers();
+    this.setupFanDrag();
+    this.setupParallax();
+    this.setupHoverSwitch();
+    requestAnimationFrame(() => setTimeout(() => this.setState({ fanMounted:true }), 60));
+    const hashMatch = /^#project-(\d+)$/.exec(location.hash);
+    if(hashMatch){
+      const idx = parseInt(hashMatch[1], 10);
+      if(idx >= 0 && idx < this.PROJECTS.length){
+        this.setState({ activeProjectIndex: idx });
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
+      }
+    }
+    const root = this.rootRef.current;
+    if(root){
+      root.querySelectorAll('[data-fade]').forEach(el=>{
+        const d = el.getAttribute('data-delay') || 0;
+        el.style.animation = `blurFadeUp .9s ease-out ${d}ms forwards`;
+      });
+    }
+    this._onKeyDown = (e) => { if(e.key === 'Escape') this.closeModal(); };
+    window.addEventListener('keydown', this._onKeyDown);
+    this._onPopState = () => {
+      if(this.state.activeProjectIndex !== null){ this.setState({ activeProjectIndex:null }); document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden'; }
+    };
+    window.addEventListener('popstate', this._onPopState);
+  }
+  componentWillUnmount(){
+    if(this._onKeyDown) window.removeEventListener('keydown', this._onKeyDown);
+    if(this._onMouseMoveParallax) window.removeEventListener('mousemove', this._onMouseMoveParallax);
+    if(this._onPopState) window.removeEventListener('popstate', this._onPopState);
+  }
+  openModal(i){ this.setState({ activeProjectIndex: i }); document.body.style.overflow = 'auto'; document.documentElement.style.overflow = 'auto'; window.scrollTo(0,0); history.pushState({ project:i }, '', '#project-' + i); }
+  closeModal(){ this.setState({ activeProjectIndex: null }); document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden'; if(location.hash) history.back(); }
+  setFeatured(i){ this.setState({ featuredIndex: i }); }
+  setMode(mode){
+    if(mode === 'pitch'){ this.setState({ comingSoon: true }); return; }
+    if(this.state.viewMode === mode) return;
+    this.setState({ viewMode: mode });
+  }
+  closeComingSoon(){ this.setState({ comingSoon: false }); }
+  prevFeatured(){ this.setState(s => ({ featuredIndex: (s.featuredIndex - 1 + this.activeList().length) % this.activeList().length })); }
+  nextFeatured(){ this.setState(s => ({ featuredIndex: (s.featuredIndex + 1) % this.activeList().length })); }
+  activeList(){ return this.state.viewMode === 'pitch' ? this.PITCH_PROJECTS : this.PROJECTS; }
+  setupParallax(){
+    const el = this.fanStageRef.current; if(!el) return;
+    this._onMouseMoveParallax = (e) => {
+      if(this._fanDragging && this._fanDragging()) return;
+      const w = window.innerWidth, h = window.innerHeight;
+      const px = ((e.clientX / w) - 0.5) * 2 * 12;
+      const py = ((e.clientY / h) - 0.5) * 2 * 12;
+      el.style.transform = `perspective(2000px) translate(${px}px, ${py}px)`;
+    };
+    window.addEventListener('mousemove', this._onMouseMoveParallax);
+  }
+  setupHoverSwitch(){
+    const el = this.fanStageRef.current; if(!el) return;
+    let lastX = null, cooldown = false;
+    el.addEventListener('mouseleave', () => { lastX = null; });
+    el.addEventListener('mousemove', (e) => {
+      if(this._fanDragging && this._fanDragging()) return;
+      if(lastX === null){ lastX = e.clientX; return; }
+      const dx = e.clientX - lastX;
+      if(cooldown){ return; }
+      if(Math.abs(dx) > 45){
+        dx < 0 ? this.nextFeatured() : this.prevFeatured();
+        lastX = e.clientX;
+        cooldown = true;
+        setTimeout(() => { cooldown = false; lastX = null; }, 320);
+      } else {
+        lastX = e.clientX;
+      }
+    });
+  }
+  setupFanDrag(){
+    const el = this.fanStageRef.current; if(!el) return;
+    let isDown = false, startX = 0, moved = false, dragX = 0;
+    const down = (x) => { isDown = true; moved = false; startX = x; dragX = 0; el.style.cursor = 'grabbing'; };
+    const move = (x) => {
+      if(!isDown) return;
+      dragX = x - startX;
+      if(Math.abs(dragX) > 6) moved = true;
+      el.style.transform = `perspective(2000px) translateX(${dragX}px)`;
+    };
+    const up = (x) => {
+      if(!isDown) return; isDown = false; el.style.cursor = 'grab';
+      const dx = x - startX;
+      el.style.transform = 'perspective(2000px)';
+      if(Math.abs(dx) > 40){ dx < 0 ? this.nextFeatured() : this.prevFeatured(); }
+    };
+    el.addEventListener('mousedown', (e) => down(e.pageX));
+    window.addEventListener('mousemove', (e) => move(e.pageX));
+    window.addEventListener('mouseup', (e) => up(e.pageX));
+    el.addEventListener('touchstart', (e) => down(e.touches[0].pageX), { passive:true });
+    el.addEventListener('touchmove', (e) => move(e.touches[0].pageX), { passive:true });
+    el.addEventListener('touchend', (e) => up(e.changedTouches[0].pageX));
+    this._fanMoved = () => moved;
+    this._fanDragging = () => isDown;
+  }
+  stopProp(e){ if(e && e.stopPropagation) e.stopPropagation(); }
+  componentDidUpdate(pp, ps){
+    if(!ps) return;
+    if(this.state.theme !== ps.theme) this.applyTheme(this.state.theme);
+  }
+  setLang(lang){
+    const r = this.rootRef.current; if(!r) return;
+    r.querySelectorAll('[data-en]').forEach(el=>{
+      if(el.dataset.arsaved === undefined) el.dataset.arsaved = el.textContent;
+      el.textContent = (lang === 'en') ? el.getAttribute('data-en') : el.dataset.arsaved;
+    });
+    r.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
+    r.setAttribute('lang', lang);
+    this.lang = lang;
+    this.setState({ lang });
+    localStorage.setItem('busla-lang', lang);
+  }
+  toggleLang(){ this.setLang(this.lang === 'en' ? 'ar' : 'en'); }
+  toggleTheme(){
+    const next = this.state.theme === 'dark' ? 'light' : 'dark';
+    this.applyTheme(next);
+    this.setState({ theme: next });
+    localStorage.setItem('busla-theme', next);
+  }
+  reveal(el){
+    if(el.dataset.shown) return;
+    el.dataset.shown = '1';
+    el.style.opacity = '1';
+    el.style.filter = 'blur(0)';
+    el.style.transform = 'none';
+  }
+  checkReveals(){
+    const root = this.rootRef.current; if(!root) return;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    root.querySelectorAll('[data-reveal]').forEach(el=>{
+      if(el.dataset.shown) return;
+      const r = el.getBoundingClientRect();
+      if(r.top < vh * 0.92) this.reveal(el);
+    });
+  }
+  setupObservers(){
+    this._check = () => this.checkReveals();
+    window.addEventListener('scroll', this._check, { passive:true });
+    window.addEventListener('resize', this._check, { passive:true });
+    this.checkReveals();
+    [200, 600, 1400].forEach(ms => setTimeout(this._check, ms));
+  }
+  renderVals(){
+    const lang = this.state.lang;
+    const list = this.activeList();
+    const n = list.length;
+    const featured = this.state.featuredIndex;
+    const fanCards = list.map((p, i) => {
+      let offset = i - featured;
+      if(offset > n/2) offset -= n;
+      if(offset < -n/2) offset += n;
+      const absOff = Math.abs(offset);
+      const isCenter = offset === 0;
+      const visible = absOff <= 2;
+      const mounted = this.state.fanMounted;
+      const rot = mounted ? offset * 6 : 0;
+      const rotY = mounted ? offset * -16 : 0;
+      const tx = mounted ? `calc(${offset} * 13vw)` : '0px';
+      const ty = mounted ? absOff * 16 : 100;
+      const tz = mounted ? -absOff * 140 : -320;
+      const scale = mounted ? (isCenter ? 1 : (absOff === 1 ? 0.82 : 0.66)) : 0.5;
+      const opacity = !visible ? 0 : (!mounted ? 0 : (isCenter ? 1 : (absOff === 1 ? 0.65 : 0.35)));
+      const z = 10 - absOff;
+      const w = 'clamp(380px,36vw,560px)', h = 'clamp(260px,40vh,420px)';
+      const delay = mounted ? absOff * 70 : 0;
+      const baseTransform = `translateX(${tx}) translateY(${ty}px) translateZ(${tz}px) rotate(${rot}deg) rotateY(${rotY}deg) scale(${scale})`;
+      const style = `position:absolute;width:${w};height:${h};border-radius:24px;overflow:hidden;cursor:pointer;transform-style:preserve-3d;will-change:transform;box-shadow:${isCenter ? '0 60px 120px rgba(0,0,0,.65),0 0 50px rgba(239,74,35,.18)' : '0 30px 60px rgba(0,0,0,.5)'};transform:${baseTransform};opacity:${opacity};z-index:${z};transition:transform .8s cubic-bezier(.22,1.15,.36,1) ${delay}ms,opacity .6s ease ${delay}ms,filter .5s ease,box-shadow .3s ease;pointer-events:${visible && mounted ? 'auto' : 'none'};background:var(--surface);`;
+      const hoverStyle = isCenter ? `transform:${baseTransform} translateY(-12px) scale(${scale * 1.02});box-shadow:0 70px 140px rgba(0,0,0,.7),0 0 70px rgba(239,74,35,.32);` : '';
+      return {
+        image: p.image,
+        category: p.category[lang],
+        title: p.title[lang],
+        filter: isCenter ? 'none' : `grayscale(0.85) brightness(.6) blur(${absOff * 1.5}px)`,
+        style,
+        hoverStyle,
+        onClick: () => {
+          if(this._fanMoved && this._fanMoved()) return;
+          isCenter ? this.openModal(i) : this.setFeatured(i);
+        }
+      };
+    });
+    const fanDots = list.map((p, i) => ({
+      onClick: () => this.setFeatured(i),
+      style: `width:${i === featured ? 22 : 8}px;height:8px;border-radius:999px;background:${i === featured ? 'var(--accent)' : 'var(--glass-border)'};cursor:pointer;transition:all .3s;`
+    }));
+    let activeProject = false;
+    if(this.state.activeProjectIndex !== null && this.state.activeProjectIndex !== undefined){
+      const p = list[this.state.activeProjectIndex];
+      activeProject = {
+        image: p.image,
+        category: p.category[lang],
+        title: p.title[lang],
+        problem: p.problem[lang],
+        stats: p.stats.map(s => ({ value: s.value, label: s.label[lang] })),
+        description: p.description[lang],
+        tech: p.tech,
+        achievements: p.achievements[lang],
+        related: list.filter((_, ri) => ri !== this.state.activeProjectIndex).slice(0, 3).map((rp, rIdx) => {
+          const realIdx = list.indexOf(rp);
+          return {
+            image: rp.image,
+            category: rp.category[lang],
+            title: rp.title[lang],
+            onOpen: () => this.openModal(realIdx)
+          };
+        })
+      };
+    }
+    return {
+      rootRef: this.rootRef,
+      fanStageRef: this.fanStageRef,
+      toggleTheme: () => this.toggleTheme(),
+      toggleLang: () => this.toggleLang(),
+      themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
+      langLabel: this.state.lang === 'ar' ? 'EN' : 'ع',
+      setModeMvp: () => this.setMode('mvp'),
+      setModePitch: () => this.setMode('pitch'),
+      mvpTabStyle: `padding:10px 26px;border-radius:999px;border:none;font-size:14px;font-weight:600;cursor:pointer;background:${this.state.viewMode === 'mvp' ? 'linear-gradient(135deg, var(--accent), var(--accent-2))' : 'transparent'};color:${this.state.viewMode === 'mvp' ? '#fff' : 'var(--text-dim)'};box-shadow:${this.state.viewMode === 'mvp' ? '0 8px 24px rgba(239,74,35,.35)' : 'none'};`,
+      pitchTabStyle: `padding:10px 26px;border-radius:999px;border:none;font-size:14px;font-weight:600;cursor:pointer;background:${this.state.viewMode === 'pitch' ? 'linear-gradient(135deg, var(--accent), var(--accent-2))' : 'transparent'};color:${this.state.viewMode === 'pitch' ? '#fff' : 'var(--text-dim)'};box-shadow:${this.state.viewMode === 'pitch' ? '0 8px 24px rgba(239,74,35,.35)' : 'none'};`,
+      fanCards,
+      fanDots,
+      prevFeatured: () => this.prevFeatured(),
+      nextFeatured: () => this.nextFeatured(),
+      activeProject,
+      closeModal: () => this.closeModal(),
+      stopProp: (e) => this.stopProp(e),
+      comingSoon: this.state.comingSoon,
+      closeComingSoon: () => this.closeComingSoon()
+    };
+  }
+}
+
+</script>
+</body>
+</html>
