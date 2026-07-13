@@ -182,7 +182,6 @@
   <section style="max-width:1280px;margin:0 auto;padding:clamp(70px,11vh,130px) clamp(20px,6vw,80px);">
     <div data-reveal style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:34px;">
       <div>
-        <span style="display:inline-flex;align-items:center;gap:9px;background:var(--glass-card);border:1px solid var(--glass-border);border-radius:999px;padding:7px 15px;margin-bottom:22px;"><span style="color:var(--accent);font-size:13px;">◆</span><span data-en="By the numbers" style="font-size:13px;font-weight:500;">بالأرقام</span></span>
         <h2 data-en="Numbers that reflect real growth" style="margin:0;font-weight:500;font-size:clamp(28px,4vw,52px);line-height:1.08;letter-spacing:-.03em;max-width:16ch;">أرقام تعكس نموّاً حقيقياً</h2>
       </div>
       <a href="index.html#booking" class="liquid-glass" data-en="Book a demo" style="text-decoration:none;color:var(--text);padding:14px 26px;border-radius:999px;font-weight:500;font-size:15px;white-space:nowrap;">احجز عرضاً</a>
@@ -200,7 +199,7 @@
         </div>
       </div>
       <div style="position:relative;background:var(--bg);min-height:461px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-        <div style="position:absolute;left:18px;right:18px;bottom:18px;background:var(--glass-card);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--glass-border);border-radius:16px;padding:22px;">
+        <div style="position:absolute;left:18px;right:18px;bottom:18px;background:var(--surface);border:1px solid var(--glass-border);border-radius:16px;padding:22px;">
           <div data-en="Average client growth" style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">متوسط نمو العملاء</div>
           <div style="display:flex;align-items:center;gap:18px;">
             <div style="font-weight:500;font-size:clamp(40px,4vw,56px);letter-spacing:-.03em;color:var(--accent);">3x</div>
@@ -346,9 +345,9 @@
   </section>
 
   <!-- ============ PROJECT MODAL ============ -->
-  <div id="projectModal" onclick="if(event.target===this) window.Home.closeModal()" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;">
+  <div id="projectModal" onclick="if(event.target===this) window.Home.closeModal()" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(5,5,5,.86);align-items:center;justify-content:center;padding:24px;">
     <div class="no-scrollbar" style="width:min(760px,100%);max-height:min(94vh,900px);overflow-y:auto;background:var(--surface);border:1px solid var(--line-strong);border-radius:22px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.5);display:flex;flex-direction:column;">
-      <button onclick="window.Home.closeModal()" style="position:absolute;top:16px;left:16px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--glass-border);background:rgba(20,20,20,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+      <button onclick="window.Home.closeModal()" style="position:absolute;top:16px;left:16px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--glass-border);background:rgba(20,20,20,.85);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
       <div style="position:relative;aspect-ratio:3/2;background:var(--bg-2);border-radius:22px 22px 0 0;overflow:hidden;flex:none;">
@@ -427,9 +426,9 @@
   </section>
 
   <!-- ============ BOOKING EMAIL MODAL ============ -->
-  <div id="bookingModal" onclick="if(event.target===this) window.Booking.close()" style="display:none;position:fixed;inset:0;z-index:250;background:rgba(5,5,5,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px;">
+  <div id="bookingModal" onclick="if(event.target===this) window.Booking.close()" style="display:none;position:fixed;inset:0;z-index:250;background:rgba(5,5,5,.86);align-items:center;justify-content:center;padding:24px;">
     <div onclick="event.stopPropagation()" style="width:min(420px,100%);background:var(--surface);border:1px solid var(--line-strong);border-radius:22px;padding:32px;box-shadow:0 30px 80px rgba(0,0,0,.5);position:relative;">
-      <button onclick="window.Booking.close()" style="position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--glass-border);background:var(--glass-card);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+      <button onclick="window.Booking.close()" style="position:absolute;top:14px;left:14px;width:34px;height:34px;border-radius:50%;border:1px solid var(--glass-border);background:var(--surface);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
       <div id="bookingModalSummary" style="font-size:13.5px;color:var(--accent);font-family:'IBM Plex Mono',monospace;margin-bottom:10px;"></div>
