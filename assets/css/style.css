@@ -97,13 +97,15 @@ img{max-width:100%;}
 .header-actions{display:flex;align-items:center;gap:9px;}
 .icon-btn{
   width:42px;height:42px;border-radius:999px;color:var(--text,#fff);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;border:none;background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px solid var(--glass-border);
 }
 .lang-btn{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13px;}
 .theme-btn{font-size:17px;}
 .cta-pill{
   text-decoration:none;color:var(--text,#fff);padding:11px 22px;border-radius:999px;
   font-weight:500;font-size:14px;white-space:nowrap;display:flex;align-items:center;
+  background:var(--surface);border:1px solid var(--glass-border);
 }
 .mb-menu{
   position:fixed;top:76px;left:12px;right:12px;z-index:45;
