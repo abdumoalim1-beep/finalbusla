@@ -98,7 +98,7 @@
     document.getElementById('svcReviewRounds').textContent = s.reviewRounds;
     document.getElementById('svcDeliveryFormat').textContent = s.deliveryFormat;
     document.getElementById('svcPriceBlock').innerHTML = priceBlockHtml(s, true);
-    document.getElementById('svcDeliverables').innerHTML = s.deliverables.map(d => `<span class="liquid-glass" style="padding:10px 18px;border-radius:999px;font-size:14px;color:var(--text);">${d}</span>`).join('');
+    document.getElementById('svcDeliverables').innerHTML = s.deliverables.map(d => `<span style="padding:10px 18px;border-radius:999px;font-size:14px;color:var(--text);background:var(--surface);border:1px solid var(--glass-border);">${d}</span>`).join('');
     document.getElementById('svcHow').innerHTML = s.how.map((st, idx) => `
       <div style="display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);">
         <div style="font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:14px;flex:none;width:32px;">${String(idx+1).padStart(2,'0')}</div>
