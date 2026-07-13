@@ -1,4 +1,4 @@
-// Busla — shared behavior: theme, language, header menu, scroll reveal, counters
+// Busla — shared behavior: header menu, scroll reveal, counters
 (function(){
   const PAL = {
     dark:{
@@ -8,20 +8,10 @@
       '--line':'rgba(255,255,255,.1)','--line-strong':'rgba(255,255,255,.18)',
       '--accent-soft':'rgba(239,74,35,.14)',
       '--page-bg':'radial-gradient(130% 110% at 50% -10%, #141414 0%, #0a0a0a 55%, #050505 100%)'
-    },
-    light:{
-      '--bg':'#f4f4f4','--bg-2':'#ececec','--surface':'#ffffff',
-      '--glass-card':'rgba(255,255,255,.7)','--glass-border':'rgba(16,16,16,.08)',
-      '--text':'#101010','--text-dim':'rgba(16,16,16,.6)','--text-faint':'rgba(16,16,16,.4)',
-      '--line':'rgba(16,16,16,.1)','--line-strong':'rgba(16,16,16,.18)',
-      '--accent-soft':'rgba(239,74,35,.1)',
-      '--page-bg':'radial-gradient(130% 110% at 50% -10%, #ffffff 0%, #f1f1f1 45%, #e6e6e6 100%)'
     }
   };
 
   const root = document.querySelector('.page-root');
-  const themeBtn = document.getElementById('themeToggle');
-  const langBtn = document.getElementById('langToggle');
   const burgerBtn = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -29,44 +19,9 @@
     if(!root) return;
     const p = PAL[theme] || PAL.dark;
     for(const k in p) root.style.setProperty(k, p[k]);
-    root.classList.toggle('lightmode', theme === 'light');
-    if(themeBtn) themeBtn.textContent = theme === 'dark' ? '☀' : '☮';
   }
+  applyTheme('dark');
 
-  function setLang(lang){
-    document.querySelectorAll('[data-en]').forEach(el=>{
-      if(el.dataset.arsaved === undefined) el.dataset.arsaved = el.textContent;
-      el.textContent = (lang === 'en') ? el.getAttribute('data-en') : el.dataset.arsaved;
-    });
-    document.documentElement.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
-    document.documentElement.setAttribute('lang', lang);
-    if(root){
-      root.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
-      root.setAttribute('lang', lang);
-    }
-    if(langBtn) langBtn.textContent = lang === 'ar' ? 'EN' : 'ع';
-    localStorage.setItem('busla-lang', lang);
-    document.dispatchEvent(new CustomEvent('busla:lang', { detail:{ lang } }));
-  }
-
-  function toggleLang(){
-    const cur = document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar';
-    setLang(cur === 'en' ? 'ar' : 'en');
-  }
-  function toggleTheme(){
-    const cur = root && root.classList.contains('lightmode') ? 'light' : 'dark';
-    const next = cur === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
-    localStorage.setItem('busla-theme', next);
-  }
-
-  const savedTheme = localStorage.getItem('busla-theme') === 'light' ? 'light' : 'dark';
-  const savedLang = localStorage.getItem('busla-lang') === 'en' ? 'en' : 'ar';
-  applyTheme(savedTheme);
-  if(savedLang === 'en') setLang('en');
-
-  if(themeBtn) themeBtn.addEventListener('click', toggleTheme);
-  if(langBtn) langBtn.addEventListener('click', toggleLang);
   if(burgerBtn && mobileMenu){
     burgerBtn.addEventListener('click', () => {
       const open = mobileMenu.classList.toggle('is-open');
@@ -114,8 +69,6 @@
   [200, 600, 1400, 2600, 4000].forEach(ms => setTimeout(checkReveals, ms));
 
   window.Busla = window.Busla || {};
-  window.Busla.applyTheme = applyTheme;
-  window.Busla.setLang = setLang;
-  window.Busla.getLang = () => (document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ar');
+  window.Busla.getLang = () => 'ar';
   window.Busla.checkReveals = checkReveals;
 })();
